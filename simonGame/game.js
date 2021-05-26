@@ -41,3 +41,6 @@ function animatePress(currentColour){
 
 }
 
+let started = false;
+
+
