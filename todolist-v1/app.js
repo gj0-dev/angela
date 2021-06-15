@@ -3,26 +3,33 @@ let bodyParser = require('body-parser')
 
 const app = express();
 
-app.use("view engine", "ejs");
+var item = "";
 
+app.set("view engine", "ejs");
+
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.get("/", function(req, res){
 
 
     var today = new Date();
-    var currentDay = today.getDay();
-    var day = "";
 
-    if(currentDay === 6 || currentDay === 0){
-        day = "Weekend";
-    } else{
-        day = "Weekday";
-    }
+    var options = {
+        weekday: "long",
+        day: "numeric",
+        month: "long"
+    };
 
-    res.render("list", { kindOfDay: day});
+    var day = today.toLocaleDateString("en-US", options);
+
+    res.render("list", { 
+        kindOfDay: day, newListItem: item});
 });
 
-
+app.post("/", function(req, res){
+    var item = req.body.newItem;
+    res.redirect("/");
+});
 
 app.listen(3000, function(){
     console.log("Listening on port 3000");
