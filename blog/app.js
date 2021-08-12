@@ -24,6 +24,12 @@ app.get("/", function(req, res){
 
 })
 
+app.get("/about", function(req, res){
+  
+  res.render("about", { aboutContent: aboutContent });
+})
+
+
 app.get("/contact", function(req, res){
 
   res.render("contact", { contactContent: contactContent });
@@ -48,14 +54,19 @@ app.post("/compose", function(req, res){
 });
 
 app.get("/posts/:postName", function(req, res){
-  console.log(req.params.postName);
+  const requestedTitle = req.params.postName;
+
+  posts.forEach(function(post){
+    const storedTitle = post.title;
+
+    if(storedTitle === requestedTitle){
+      console.log("Match Found!");
+    }
+  })
+
 });
 
 
-app.get("/about", function(req, res){
-  
-  res.render("about", { aboutContent: aboutContent });
-})
 
 app.listen(3000, function() {
   console.log("Server started on port 3000");
