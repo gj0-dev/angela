@@ -23,7 +23,7 @@ const fruit = new Fruit({
     
 })
 
-fruit.save()
+// fruit.save()
 
 const personSchema = new mongoose.Schema ({
     name: String,
@@ -75,6 +75,16 @@ Fruit.find(function(err, fruits){
         })
     }
 });
+
+Fruit.updateOne({_id: "34bob3254b355643u6"}, {name: "Peach"}, function(err){
+    if(err){
+        console.log(err);
+    }
+    else{
+        console.log("Successfully updated the document");
+    }
+    }
+})
 
 
 
