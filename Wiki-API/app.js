@@ -70,11 +70,8 @@ app.route("/articles")
 
     ////////////////////Requests targeting a specific article
 
-// localhost:3000/articles/Jack-Bauer
-
 app.route("/articles/:articleTitle")
     
-    // req.params.articleTitle = "Jack Bauer"
     
     .get(function (req, res) {
         
