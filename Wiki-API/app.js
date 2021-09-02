@@ -25,6 +25,8 @@ const articleSchema = {
 
 const Article = mongoose.model("Article", articleSchema);
 
+/////////////////////////////Requests targeting all articles
+
 app.route("/articles")
 
     .get(function (req, res) {
@@ -65,6 +67,39 @@ app.route("/articles")
             }
         })
     });
+
+    ////////////////////Requests targeting a specific article
+
+// localhost:3000/articles/Jack-Bauer
+
+app.route("/articles/:articleTitle")
+    
+    // req.params.articleTitle = "Jack Bauer"
+    
+    .get(function (req, res) {
+        
+        Article.findOne({ title: req.params.articleTitle }, function (err, foundArticle) {
+            if (foundArticle) {
+                res.send(foundArticle);
+            } else {
+                res.send("No articles matching that title was found")
+           }
+        })
+    
+    })
+
+    .put(function(req, res) {
+        Article.replaceOne(
+            { title: req.params.articleTitle },
+            { title: req.body.title, content: req.body.content },
+            { overwrite: true },
+            function (err) {
+                if (!err) {
+                    res.send("Successfully updated article")
+                }
+            }
+        )
+    })
 
 
 app.listen(3000, function () {
