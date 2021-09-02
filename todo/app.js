@@ -12,7 +12,8 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
-mongoose.connect("mongodb+srv://<insertusernameandpw>@cluster0.khuwr.mongodb.net/todolistDB", { useNewUrlParser: true});
+// mongoose.connect("mongodb+srv://<usernamecolonpw>cluster0.khuwr.mongodb.net/todolistDB", { useNewUrlParser: true});
+mongoose.connect("mongodb://localhost:27017/todolistDB", { useNewUrlParser: true});
 
 //admin-garry<colon>test123
 

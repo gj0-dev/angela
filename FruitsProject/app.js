@@ -84,7 +84,7 @@ Fruit.updateOne({_id: "34bob3254b355643u6"}, {name: "Peach"}, function(err){
         console.log("Successfully updated the document");
     }
     }
-})
+)
 
 
 
